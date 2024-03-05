@@ -10,8 +10,8 @@ from pipelines.aws_s3_pipeline import upload_s3_pipeline
 from pipelines.reddit_pipeline import reddit_pipeline
 
 default_args ={
-    'owner':''
-    'start_date':datetime(2024,02,01)
+    'owner':'',
+    'start_date': datetime(2024,2,1)
 }
 
 file_postfix=datetime.now().strftime("%Y%m%d")
@@ -30,7 +30,7 @@ extract=PythonOperator(
     task_id='reddit_extraction',
     python_callable=reddit_pipeline,
     op_kwargs={
-        'file_name':f'reddit'_{file_postfix},
+        'file_name':f'reddit_{file_postfix}',
         'subreddit':'datascience',
         'time_filter':'day',
         'limit':1000
@@ -41,4 +41,8 @@ extract=PythonOperator(
 upload_s3=PythonOperator(
     task_id='s3_upload',
     python_callable=upload_s3_pipeline,
+    dag=dag
 )
+
+
+extract >>upload_s3
