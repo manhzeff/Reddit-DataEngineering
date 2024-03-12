@@ -5,5 +5,6 @@ This project provides a comprehensive data pipeline solution to extract, transfo
 
 
 ** Đây là workflow của project **
-<img src="https://imgur.com/a/n4NIIQx">
+![image](https://github.com/manhzeff/Reddit-DataEngineering/assets/104782892/b2057394-9d39-437b-a970-241a7ee8b564)
+
 
